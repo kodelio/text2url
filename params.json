@@ -1,0 +1,6 @@
+{
+  "name": "Text2url",
+  "tagline": "Conversion de texte ou nom de fichier en URL",
+  "body": "# text2url\r\n\r\n## Présentation\r\nText 2 URL permet de convertir un ou plusieurs mots (ou noms de fichiers) afin d'être utilisable en tant qu'URL propre (pas d'espaces, pas d'accents, pas de majuscules etc ...). La conversion est personnalisable, vous pouvez choisir quels éléments garder ou non.\r\n\r\n## Liste des fonctionnalités\r\n- Conversion d'accents\r\n- Conversion de majuscules\r\n- Conversion de caractères spéciaux\r\n- Choix du caractère de séparation (tiret ou underscore)\r\n- Copier le résultat en 1 clic\r\n- Ajouter un préfixe d'URL\r\n\r\n## Fonctionnalités prévues\r\n- Conversion en utilisant la fonction rawurlencode de PHP\r\n- Possibilité d'ajouter plusieurs lignes séparées par un point-virgule ou par un retour à la ligne\r\n- Convertir les noms d'un ou plusieurs fichiers en les uploadant dans l'application\r\n\r\n## Exemple\r\nCatalogue à vendre -> catalogue-a-vendre\r\n\r\n## Crédits\r\n- Thème Bootswatch Paper : http://bootswatch.com/paper/\r\n- Clipboard JS : https://zenorocha.github.io/clipboard.js\r\n\r\n## Contact\r\n[Site Web](https://laurent-toson.fr/)",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
