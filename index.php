@@ -59,93 +59,105 @@ if (isset($_POST['texte'])) {
 					<p style="font-size: 16px;">Text 2 URL permet de convertir un ou plusieurs mots (ou noms de fichiers) afin d'être utilisable en tant qu'URL propre (pas d'espaces, pas d'accents, pas de majuscules etc ...). La conversion est personnalisable, vous pouvez choisir quels éléments garder ou non.</p>
 					<p style="font-size: 16px;" class="text-primary"><b>Exemple : <i>Catalogue à vendre</i> -> <i>catalogue-a-vendre</i></b></p>
 				</div>
-				<?php if (isset($resultat) and $resultat != "") {
-					echo '<div class="panel panel-success">
-					<div class="panel-heading">
-						<h3 class="panel-title">Résultat <span id="resultat" style="cursor: pointer; float: right;" data-placement="top" title="Copier" data-clipboard-text="'.$resultat.'">Copier <i class="fa fa-clipboard"></i></span></h3>
-					</div>
-					<div class="panel-body">
-						'.$resultat.'
-					</div>
-				</div>';
-			}
-			else if (isset($oldTexte) and $oldTexte == "") {
-				echo '<div class="panel panel-danger">
-				<div class="panel-heading">
-					<h3 class="panel-title">Erreur</h3>
-				</div>
-				<div class="panel-body">
-					Vous n\'avez pas entrez un texte valide !
-				</div>
-			</div>';
-		}
-		?>
-		<div class="col-lg-12">
-			<div class="well">
-				<form action="#" method="post" id="convert">
-					<fieldset>
-						<div class="form-group">
-							<label for="texte">Texte à convertir</label>
-							<input class="form-control" name="texte" />
+				<?php 
+				if (isset($resultat) and $resultat != "") {
+					echo '
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h3 class="panel-title">Résultat <span id="resultat" style="cursor: pointer; float: right;" data-placement="top" title="Copier" data-clipboard-text="'.$resultat.'">Copier <i class="fa fa-clipboard"></i></span></h3>
 						</div>
-						<div class="form-group">
-							<label for="texte">Préfixe d'URL (facultatif)</label>
-							<input class="form-control" name="prefixe" />
+						<div class="panel-body">
+							'.$resultat.'
 						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>
-									<input type="checkbox" name="accents" checked> Convertir les accents (à -> a, É -> E)
-								</label>
-							</div>
-							<div class="form-group">
-								<label>
-									<input type="checkbox" name="caracteres" checked> Convertir les espaces et les caractères spéciaux (: / ; _ ' ")
-								</label>
-							</div>
-							<div class="form-group">
-								<label>
-									<input type="checkbox" name="majuscules" checked> Convertir les majuscules (A -> a)
-								</label>
-							</div>
+					</div>';
+				}
+				else if (isset($oldTexte) and $oldTexte == "") {
+					echo '
+					<div class="panel panel-danger">
+						<div class="panel-heading">
+							<h3 class="panel-title">Erreur</h3>
 						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label">Caractère de séparation :</label>
-								<div class="radio">
-									<label>
-										<input type="radio" name="choixCarac" id="tiret" value="tiret" checked="">
-										Utiliser un "-" (par défaut)
-									</label>
+						<div class="panel-body">
+							Vous n\'avez pas entrez un texte valide !
+						</div>
+					</div>';
+				}
+				?>
+				<div class="col-lg-12">
+					<div class="well">
+						<form action="#" method="post" id="convert">
+							<fieldset>
+								<div class="form-group">
+									<label for="texte">Texte à convertir</label>
+									<input class="form-control" name="texte" />
 								</div>
-								<div class="radio">
-									<label>
-										<input type="radio" name="choixCarac" id="underscore" value="underscore">
-										Utiliser un "_"
-									</label>
+								<div class="form-group">
+									<label for="texte">Préfixe d'URL (facultatif)</label>
+									<input class="form-control" name="prefixe" />
 								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<input class="form-control btn-primary" name="submit" value="Valider" type="submit">
-						</div>
-					</fieldset>
-				</form>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>
+											<input type="checkbox" name="accents" checked> Convertir les accents (à -> a, É -> E)
+										</label>
+									</div>
+									<div class="form-group">
+										<label>
+											<input type="checkbox" name="caracteres" checked> Convertir les espaces et les caractères spéciaux (: / ; _ ' ")
+										</label>
+									</div>
+									<div class="form-group">
+										<label>
+											<input type="checkbox" name="majuscules" checked> Convertir les majuscules (A -> a)
+										</label>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Caractère de séparation :</label>
+										<div class="radio">
+											<label>
+												<input type="radio" name="choixCarac" id="tiret" value="tiret" checked="">
+												Utiliser un "-" (par défaut)
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="choixCarac" id="underscore" value="underscore">
+												Utiliser un "_"
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<input class="form-control btn-primary" name="submit" value="Valider" type="submit">
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</div>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript" src="js/clipboard.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script>
-	var clipboard = new Clipboard('#resultat');
-	clipboard.on('success', function(e) {
-		e.clearSelection();
-		id = e.trigger.id;
-		$("#"+id).tooltip('show');
-	});
-</script>
+	<footer class="footer">
+		<div class="container">
+			<div class="col-md-12">
+				<div style="text-align:center;">
+					<div class="text-muted"><b><a style="text-decoration: none;" target="_blank" href="https://laurent-toson.fr/"><i class="fa fa-link"></i> Site Web</a> | <a style="text-decoration: none;" target="_blank" href="https://github.com/kokno/text2url"><i class="fa fa-github"></i> Page GitHub</a> | <span style="color: #2c3e50;">Application développée par Laurent Toson</span></b></div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="js/clipboard.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script>
+		var clipboard = new Clipboard('#resultat');
+		clipboard.on('success', function(e) {
+			e.clearSelection();
+			id = e.trigger.id;
+			$("#"+id).tooltip('show');
+		});
+	</script>
 </body>
 </html>
