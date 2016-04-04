@@ -55,7 +55,7 @@ if (isset($_POST['texte'])) {
 		<div class="row">
 			<div class="col-md-12">
 				<div class="jumbotron">
-					<h2>Text 2 URL</h2>
+					<h2>Text 2 URL <a style="text-decoration: none;" target="_blank" href="https://github.com/kokno/text2url"><i class="fa fa-github"></i></a></h2>
 					<p style="font-size: 16px;">Text 2 URL permet de convertir un ou plusieurs mots (ou noms de fichiers) afin d'être utilisable en tant qu'URL propre (pas d'espaces, pas d'accents, pas de majuscules etc ...). La conversion est personnalisable, vous pouvez choisir quels éléments garder ou non.</p>
 					<p style="font-size: 16px;" class="text-primary"><b>Exemple : <i>Catalogue à vendre</i> -> <i>catalogue-a-vendre</i></b></p>
 				</div>
@@ -139,15 +139,6 @@ if (isset($_POST['texte'])) {
 			</div>
 		</div>
 	</div>
-	<footer class="footer">
-		<div class="container">
-			<div class="col-md-12">
-				<div style="text-align:center;">
-					<div class="text-muted"><b><a style="text-decoration: none;" target="_blank" href="https://laurent-toson.fr/"><i class="fa fa-link"></i> Site Web</a> | <a style="text-decoration: none;" target="_blank" href="https://github.com/kokno/text2url"><i class="fa fa-github"></i> Page GitHub</a> | <span style="color: #2c3e50;">Application développée par Laurent Toson</span></b></div>
-				</div>
-			</div>
-		</div>
-	</footer>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript" src="js/clipboard.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>

@@ -7533,21 +7533,3 @@ input[type="checkbox"]:disabled:checked:after,
 ::-webkit-scrollbar-thumb {
   background-color: #2196f3 ;
 }
-
-.footer { 
-  position:absolute;
-  display: block;
-  bottom:0;
-  width:100%;
-  height:65px;
-  border-top: #b4bcc2 1px solid;
-}
-
-.footer>.container {
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-.container .text-muted {
-  margin: 20px 0;
-}
