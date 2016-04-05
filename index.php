@@ -1,40 +1,44 @@
 <?php
 // TODO : 
-// utiliser la fonction rawurlencode de php
 // Text area séparé par ; ou saut à la ligne
 // Upload multiple fichiers pour récup non
 if (isset($_POST['texte'])) {
 	$oldTexte = $_POST['texte'];
 	$resultat = $_POST['texte'];
-	if (isset($_POST['accents']) AND $_POST['accents']) {
-		$accent = array('á','à','â','ä','ã','å','ç','é','è','ê','ë','í','ì','î','ï','ñ','ó','ò','ô','ö','õ','ú','ù','û','ü','ý','ÿ','Á','À','Â','Ä','Ã','Å','Ç','É','È','Ê','Ë','Í','Ì','Î','Ï','Ñ','Ó','Ò','Ô','Ö','Õ','Ú','Ù','Û','Ü','Ý','Ÿ');
-		$normal = array('a','a','a','a','a','a','c','e','e','e','e','i','i','i','i','n','o','o','o','o','o','u','u','u','u','y','y','A','A','A','A','A','A','C','E','E','E','E','I','I','I','I','N','O','O','O','O','O','U','U','U','U','Y','Y');
-		$resultat = str_replace($accent, $normal, $resultat);
-	}
-	if (isset($_POST['majuscules']) AND $_POST['majuscules']) {
-		$accentM = array('Á','À','Â','Ä','Ã','Å','Ç','É','È','Ê','Ë','Í','Ì','Î','Ï','Ñ','Ó','Ò','Ô','Ö','Õ','Ú','Ù','Û','Ü','Ý','Ÿ');
-		$normalM = array('A','A','A','A','A','A','C','E','E','E','E','I','I','I','I','N','O','O','O','O','O','U','U','U','U','Y','Y');
-		$resultat = str_replace($accentM, $normalM, $resultat);
-		$resultat = strtolower($resultat);
-	}
-	if (isset($_POST['caracteres']) AND $_POST['caracteres']) {
-		if (isset($_POST['choixCarac']) AND $_POST['choixCarac'] == "underscore") {
-			$resultat = preg_replace('/[^a-zA-Z0-9\']/', '_', $resultat);
-			$resultat = preg_replace('/[\']/', '_', $resultat);
-		}
-		else {
-			$resultat = preg_replace('/[^a-zA-Z0-9\']/', '-', $resultat);
-			$resultat = preg_replace('/[\']/', '-', $resultat);
-		}
-		
-	}
-	if (isset($_POST['choixCarac']) AND $_POST['choixCarac'] == "underscore") {
-		$resultat = trim($resultat, "_");
-		$resultat = preg_replace('/[_]+/', '_', $resultat);
+	if (isset($_POST['rawurlencode']) AND $_POST['rawurlencode']) {
+		$resultat = rawurlencode($resultat);
 	}
 	else {
-		$resultat = trim($resultat, "-");
-		$resultat = preg_replace('/[-]+/', '-', $resultat);
+		if (isset($_POST['accents']) AND $_POST['accents']) {
+			$accent = array('á','à','â','ä','ã','å','ç','é','è','ê','ë','í','ì','î','ï','ñ','ó','ò','ô','ö','õ','ú','ù','û','ü','ý','ÿ','Á','À','Â','Ä','Ã','Å','Ç','É','È','Ê','Ë','Í','Ì','Î','Ï','Ñ','Ó','Ò','Ô','Ö','Õ','Ú','Ù','Û','Ü','Ý','Ÿ');
+			$normal = array('a','a','a','a','a','a','c','e','e','e','e','i','i','i','i','n','o','o','o','o','o','u','u','u','u','y','y','A','A','A','A','A','A','C','E','E','E','E','I','I','I','I','N','O','O','O','O','O','U','U','U','U','Y','Y');
+			$resultat = str_replace($accent, $normal, $resultat);
+		}
+		if (isset($_POST['majuscules']) AND $_POST['majuscules']) {
+			$accentM = array('Á','À','Â','Ä','Ã','Å','Ç','É','È','Ê','Ë','Í','Ì','Î','Ï','Ñ','Ó','Ò','Ô','Ö','Õ','Ú','Ù','Û','Ü','Ý','Ÿ');
+			$normalM = array('A','A','A','A','A','A','C','E','E','E','E','I','I','I','I','N','O','O','O','O','O','U','U','U','U','Y','Y');
+			$resultat = str_replace($accentM, $normalM, $resultat);
+			$resultat = strtolower($resultat);
+		}
+		if (isset($_POST['caracteres']) AND $_POST['caracteres']) {
+			if (isset($_POST['choixCarac']) AND $_POST['choixCarac'] == "underscore") {
+				$resultat = preg_replace('/[^a-zA-Z0-9\']/', '_', $resultat);
+				$resultat = preg_replace('/[\']/', '_', $resultat);
+			}
+			else {
+				$resultat = preg_replace('/[^a-zA-Z0-9\']/', '-', $resultat);
+				$resultat = preg_replace('/[\']/', '-', $resultat);
+			}
+
+		}
+		if (isset($_POST['choixCarac']) AND $_POST['choixCarac'] == "underscore") {
+			$resultat = trim($resultat, "_");
+			$resultat = preg_replace('/[_]+/', '_', $resultat);
+		}
+		else {
+			$resultat = trim($resultat, "-");
+			$resultat = preg_replace('/[-]+/', '-', $resultat);
+		}
 	}
 	if (isset($_POST['prefixe']) AND $_POST['prefixe'] != "") {
 		$resultat = $_POST['prefixe'].$resultat;
@@ -98,21 +102,26 @@ if (isset($_POST['texte'])) {
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>
-											<input type="checkbox" name="accents" checked> Convertir les accents (à -> a, É -> E)
+											<input type="checkbox" class="choix2" name="accents" checked> Convertir les accents (à -> a, É -> E)
 										</label>
 									</div>
 									<div class="form-group">
 										<label>
-											<input type="checkbox" name="caracteres" checked> Convertir les espaces et les caractères spéciaux (: / ; _ ' ")
+											<input type="checkbox" class="choix2" name="caracteres" checked> Convertir les espaces et les caractères spéciaux (: / ; _ ' ")
 										</label>
 									</div>
 									<div class="form-group">
 										<label>
-											<input type="checkbox" name="majuscules" checked> Convertir les majuscules (A -> a)
+											<input type="checkbox" class="choix2" name="majuscules" checked> Convertir les majuscules (A -> a)
+										</label>
+									</div>
+									<div class="form-group">
+										<label>
+											<input type="checkbox" class="choix1" name="rawurlencode" value="choix1"> Convertir avec la fonction PHP rawurlencode()
 										</label>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-6" id="radioDiv">
 									<div class="form-group">
 										<label class="control-label">Caractère de séparation :</label>
 										<div class="radio">
@@ -148,6 +157,20 @@ if (isset($_POST['texte'])) {
 			e.clearSelection();
 			id = e.trigger.id;
 			$("#"+id).tooltip('show');
+		});
+	</script>
+	<script>
+		$('input[class^="choix"]').click(function() {
+			var $this = $(this);
+			if ($this.is(".choix1")) {
+				if ($(".choix1:checked").length > 0) {
+					$(".choix2").prop({ disabled: true, checked: false });
+					$("#radioDiv").hide();
+				} else {
+					$(".choix2").prop("disabled", false);
+					$("#radioDiv").show();
+				}
+			}
 		});
 	</script>
 </body>
