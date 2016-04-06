@@ -92,12 +92,8 @@ if (isset($_POST['texte'])) {
 						<form action="#" method="post" id="convert">
 							<fieldset>
 								<div class="form-group">
-									<label for="texte">Texte à convertir</label>
-									<input class="form-control" name="texte" />
-								</div>
-								<div class="form-group">
-									<label for="texte">Préfixe d'URL (facultatif)</label>
-									<input class="form-control" name="prefixe" />
+									<label for="texte">Texte à convertir <i style="color: #2196f3; cursor: pointer;" class="fa fa-info-circle" data-toggle="tooltip" title="Séparez par des sauts de lignes pour convertir plusieurs expressions"></i></label>
+									<textarea class="form-control" required name="texte" rows="5" cols="50"></textarea>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -121,8 +117,12 @@ if (isset($_POST['texte'])) {
 										</label>
 									</div>
 								</div>
-								<div class="col-md-6" id="radioDiv">
+								<div class="col-md-6">
 									<div class="form-group">
+										<label for="texte">Préfixe d'URL (facultatif)</label>
+										<input class="form-control" name="prefixe" />
+									</div>
+									<div class="form-group" id="radioDiv">
 										<label class="control-label">Caractère de séparation :</label>
 										<div class="radio">
 											<label>
@@ -171,6 +171,13 @@ if (isset($_POST['texte'])) {
 					$("#radioDiv").show();
 				}
 			}
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('[data-toggle="tooltip"]').tooltip({
+				placement : 'top'
+			});
 		});
 	</script>
 </body>
