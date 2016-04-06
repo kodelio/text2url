@@ -92,7 +92,7 @@ if (isset($_POST['texte'])) {
 						<form action="#" method="post" id="convert">
 							<fieldset>
 								<div class="form-group">
-									<label for="texte">Texte à convertir <i style="color: #2196f3; cursor: pointer;" class="fa fa-info-circle" data-toggle="tooltip" title="Séparez par des sauts de lignes pour convertir plusieurs expressions"></i></label>
+									<label for="texte">Texte à convertir (max. 15 lignes) <i style="color: #2196f3; cursor: pointer;" class="fa fa-info-circle" data-toggle="tooltip" title="Séparez par des sauts de lignes pour convertir plusieurs expressions"></i></label>
 									<textarea class="form-control" required name="texte" rows="5" cols="50"></textarea>
 								</div>
 								<div class="col-md-6">
@@ -138,8 +138,11 @@ if (isset($_POST['texte'])) {
 										</div>
 									</div>
 								</div>
-								<div class="form-group">
-									<input class="form-control btn-primary" name="submit" value="Valider" type="submit">
+								<br />
+								<div class="col-md-12" style="margin-top: 20px;">
+									<div class="form-group">
+										<input class="form-control btn-primary" name="submit" value="Valider" type="submit">
+									</div>
 								</div>
 							</fieldset>
 						</form>
