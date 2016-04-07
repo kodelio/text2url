@@ -14,9 +14,9 @@ Text 2 URL permet de convertir un ou plusieurs mots (ou noms de fichiers) afin d
 - Copier le résultat en 1 clic
 - Ajouter un préfixe d'URL
 - Conversion en utilisant la fonction rawurlencode de PHP
+- Possibilité d'ajouter plusieurs lignes séparées par un retour à la ligne
 
 ## Fonctionnalités prévues
-- Possibilité d'ajouter plusieurs lignes séparées par un point-virgule ou par un retour à la ligne
 - Convertir les noms d'un ou plusieurs fichiers en les uploadant dans l'application
 
 ## Exemple

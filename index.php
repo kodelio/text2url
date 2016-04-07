@@ -1,47 +1,66 @@
 <?php
-// TODO : 
-// Text area séparé par ; ou saut à la ligne
-// Upload multiple fichiers pour récup non
 if (isset($_POST['texte'])) {
 	$oldTexte = $_POST['texte'];
 	$resultat = $_POST['texte'];
-	if (isset($_POST['rawurlencode']) AND $_POST['rawurlencode']) {
-		$resultat = rawurlencode($resultat);
-	}
-	else {
-		if (isset($_POST['accents']) AND $_POST['accents']) {
-			$accent = array('á','à','â','ä','ã','å','ç','é','è','ê','ë','í','ì','î','ï','ñ','ó','ò','ô','ö','õ','ú','ù','û','ü','ý','ÿ','Á','À','Â','Ä','Ã','Å','Ç','É','È','Ê','Ë','Í','Ì','Î','Ï','Ñ','Ó','Ò','Ô','Ö','Õ','Ú','Ù','Û','Ü','Ý','Ÿ');
-			$normal = array('a','a','a','a','a','a','c','e','e','e','e','i','i','i','i','n','o','o','o','o','o','u','u','u','u','y','y','A','A','A','A','A','A','C','E','E','E','E','I','I','I','I','N','O','O','O','O','O','U','U','U','U','Y','Y');
-			$resultat = str_replace($accent, $normal, $resultat);
-		}
-		if (isset($_POST['majuscules']) AND $_POST['majuscules']) {
-			$accentM = array('Á','À','Â','Ä','Ã','Å','Ç','É','È','Ê','Ë','Í','Ì','Î','Ï','Ñ','Ó','Ò','Ô','Ö','Õ','Ú','Ù','Û','Ü','Ý','Ÿ');
-			$normalM = array('A','A','A','A','A','A','C','E','E','E','E','I','I','I','I','N','O','O','O','O','O','U','U','U','U','Y','Y');
-			$resultat = str_replace($accentM, $normalM, $resultat);
-			$resultat = strtolower($resultat);
-		}
-		if (isset($_POST['caracteres']) AND $_POST['caracteres']) {
-			if (isset($_POST['choixCarac']) AND $_POST['choixCarac'] == "underscore") {
-				$resultat = preg_replace('/[^a-zA-Z0-9\']/', '_', $resultat);
-				$resultat = preg_replace('/[\']/', '_', $resultat);
+	$resultat = preg_split("/\r\n|\n|\r/", $resultat);
+	if (count($resultat) < 15) {
+		if (isset($_POST['rawurlencode']) AND $_POST['rawurlencode']) {
+			for ($i=0; $i < count($resultat); $i++) { 
+				$resultat[$i] = rawurlencode($resultat[$i]);
 			}
-			else {
-				$resultat = preg_replace('/[^a-zA-Z0-9\']/', '-', $resultat);
-				$resultat = preg_replace('/[\']/', '-', $resultat);
-			}
-
-		}
-		if (isset($_POST['choixCarac']) AND $_POST['choixCarac'] == "underscore") {
-			$resultat = trim($resultat, "_");
-			$resultat = preg_replace('/[_]+/', '_', $resultat);
 		}
 		else {
-			$resultat = trim($resultat, "-");
-			$resultat = preg_replace('/[-]+/', '-', $resultat);
+			if (isset($_POST['accents']) AND $_POST['accents']) {
+				$accent = array('á','à','â','ä','ã','å','ç','é','è','ê','ë','í','ì','î','ï','ñ','ó','ò','ô','ö','õ','ú','ù','û','ü','ý','ÿ','Á','À','Â','Ä','Ã','Å','Ç','É','È','Ê','Ë','Í','Ì','Î','Ï','Ñ','Ó','Ò','Ô','Ö','Õ','Ú','Ù','Û','Ü','Ý','Ÿ');
+				$normal = array('a','a','a','a','a','a','c','e','e','e','e','i','i','i','i','n','o','o','o','o','o','u','u','u','u','y','y','A','A','A','A','A','A','C','E','E','E','E','I','I','I','I','N','O','O','O','O','O','U','U','U','U','Y','Y');
+				for ($i=0; $i < count($resultat); $i++) { 
+					$resultat[$i] = str_replace($accent, $normal, $resultat[$i]);
+				}
+			}
+			if (isset($_POST['majuscules']) AND $_POST['majuscules']) {
+				$accentM = array('Á','À','Â','Ä','Ã','Å','Ç','É','È','Ê','Ë','Í','Ì','Î','Ï','Ñ','Ó','Ò','Ô','Ö','Õ','Ú','Ù','Û','Ü','Ý','Ÿ');
+				$normalM = array('A','A','A','A','A','A','C','E','E','E','E','I','I','I','I','N','O','O','O','O','O','U','U','U','U','Y','Y');
+				for ($i=0; $i < count($resultat); $i++) { 
+					$resultat[$i] = str_replace($accentM, $normalM, $resultat[$i]);
+					$resultat[$i] = strtolower($resultat[$i]);
+				}
+			}
+			if (isset($_POST['caracteres']) AND $_POST['caracteres']) {
+				if (isset($_POST['choixCarac']) AND $_POST['choixCarac'] == "underscore") {
+					for ($i=0; $i < count($resultat); $i++) { 
+						$resultat[$i] = preg_replace('/[^a-zA-Z0-9\']/', '_', $resultat[$i]);
+						$resultat[$i] = preg_replace('/[\']/', '_', $resultat[$i]);
+					}
+				}
+				else {
+					for ($i=0; $i < count($resultat); $i++) { 
+						$resultat[$i] = preg_replace('/[^a-zA-Z0-9\']/', '-', $resultat[$i]);
+						$resultat[$i] = preg_replace('/[\']/', '-', $resultat[$i]);
+					}
+				}
+
+			}
+			if (isset($_POST['choixCarac']) AND $_POST['choixCarac'] == "underscore") {
+				for ($i=0; $i < count($resultat); $i++) { 
+					$resultat[$i] = trim($resultat[$i], "_");
+					$resultat[$i] = preg_replace('/[_]+/', '_', $resultat[$i]);
+				}
+			}
+			else {
+				for ($i=0; $i < count($resultat); $i++) { 
+					$resultat[$i] = trim($resultat[$i], "-");
+					$resultat[$i] = preg_replace('/[-]+/', '-', $resultat[$i]);
+				}
+			}
+		}
+		if (isset($_POST['prefixe']) AND $_POST['prefixe'] != "") {
+			for ($i=0; $i < count($resultat); $i++) { 
+				$resultat[$i] = $_POST['prefixe'].$resultat[$i];
+			}
 		}
 	}
-	if (isset($_POST['prefixe']) AND $_POST['prefixe'] != "") {
-		$resultat = $_POST['prefixe'].$resultat;
+	else {
+		$erreurLignes = "Vous avez entré plus de 15 lignes !";
 	}
 }
 ?>
@@ -64,16 +83,32 @@ if (isset($_POST['texte'])) {
 					<p style="font-size: 16px;" class="text-primary"><b>Exemple : <i>Catalogue à vendre</i> -> <i>catalogue-a-vendre</i></b></p>
 				</div>
 				<?php 
-				if (isset($resultat) and $resultat != "") {
+				if (isset($erreurLignes) and $erreurLignes != "") {
 					echo '
-					<div class="panel panel-success">
+					<div class="panel panel-danger">
 						<div class="panel-heading">
-							<h3 class="panel-title">Résultat <span id="resultat" style="cursor: pointer; float: right;" data-placement="top" title="Copier" data-clipboard-text="'.$resultat.'">Copier <i class="fa fa-clipboard"></i></span></h3>
+							<h3 class="panel-title">Erreur</h3>
 						</div>
 						<div class="panel-body">
-							'.$resultat.'
+							'.$erreurLignes.'
 						</div>
 					</div>';
+				}
+				else if (isset($resultat) and $resultat != "") {
+					$str = '<div class="panel panel-success"><div class="panel-heading">
+					<h3 class="panel-title">Résultat <span id="resultat" style="cursor: pointer; float: right;" data-placement="top" title="Copier" data-clipboard-text="';
+						for ($i=0; $i < count($resultat); $i++) { 
+							$str .= $resultat[$i].PHP_EOL;
+						}
+						$str .= '">Copier <i class="fa fa-clipboard"></i></span></h3>
+					</div>
+					<div class="panel-body">';
+						for ($i=0; $i < count($resultat); $i++) { 
+							$str .= $resultat[$i].'<br />';
+						}
+						$str .= '</div>
+					</div>';
+					echo $str;
 				}
 				else if (isset($oldTexte) and $oldTexte == "") {
 					echo '
